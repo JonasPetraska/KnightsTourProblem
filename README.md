@@ -1,5 +1,6 @@
 # Knights tour problem
 Artificial intelligence course Knights tour problem program. 
+
 Vilnius University, 2020
 
 # Algorithm
