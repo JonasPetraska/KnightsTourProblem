@@ -50,31 +50,51 @@ namespace KnightsTourProblem
             Print(solution.Item2);
         }
 
+        /// <summary>
+        /// Initializes variables and starts recursion
+        /// </summary>
+        /// <returns>(True, array) if path is found, (False, array) if path is not found.</returns>
         private (bool, int[,]) ExecuteInternal()
         {
+            //Initializes variables
             int[,] solution = new int[_lengthOfBoard, _lengthOfBoard];
 
+            //Set all cells to not visited
             for (int x = 0; x < _lengthOfBoard; x++)
                 for (int y = 0; y < _lengthOfBoard; y++)
                     solution[x, y] = -1;
 
+            //Define moves of a knight
             int[] xMove = {2, 1, -1, -2,
                            -2, -1, 1, 2};
             int[] yMove = {1, 2, 2, 1,
                            -1, -2, -2, -1};
 
+            //Set starting position
             solution[_initialX - 1, _initialY - 1] = 0;
 
+            //Run recursion
             if (!ExecuteInternalRec(_initialX - 1, _initialY - 1, 1, solution, xMove, yMove))
                 return (false, solution);
 
             return (true, solution);
         }
 
+        /// <summary>
+        /// Main recursion algorithm to solve Knights problem
+        /// </summary>
+        /// <param name="x">X position</param>
+        /// <param name="y">Y position</param>
+        /// <param name="movei">Next cell number</param>
+        /// <param name="solution">Solution array</param>
+        /// <param name="xMove">Moves of knight in x axis</param>
+        /// <param name="yMove">Moves of knight in y axis</param>
+        /// <returns></returns>
         private bool ExecuteInternalRec(int x, int y, int movei,
                                      int[,] solution, int[] xMove,
                                      int[] yMove)
         {
+            //Initialize variables
             int k, 
                 next_x, 
                 next_y;
@@ -82,13 +102,16 @@ namespace KnightsTourProblem
             bool isThread = false;
             bool isBacktrack = false;
 
+            //Algorithm finished, all cells visited.
             if (movei == _numberOfSquaresOnBoard)
                 return true;
 
             _level++;
 
+            //Go through each move
             for (k = 0; k < 8; k++)
             {
+                //Calculate next move
                 next_x = x + xMove[k];
                 next_y = y + yMove[k];
 
@@ -105,6 +128,7 @@ namespace KnightsTourProblem
                 _trials++;
                 Write($"{string.Format("{0,8}", _trials)}) {RepeatSymbol('-', _level - 1)}R{k + 1}. U={next_x + 1}, V={next_y + 1}. L={_level + 1}. ", false, true, false);
 
+                //Check if already visited
                 if (next_x >= 0 && next_x < _lengthOfBoard &&
                     next_y >= 0 && next_y < _lengthOfBoard &&
                     solution[next_x, next_y] > -1)
@@ -113,22 +137,26 @@ namespace KnightsTourProblem
                     isThread = true;
                 }
                 
-
+                //Check if safe to move - given cell is in board and hasn't been already visited
                 if (IsSafe(next_x, next_y, solution))
                 {
+                    //Visit cell
                     solution[next_x, next_y] = movei;
 
                     Write($"Free. BOARD[{next_x + 1},{next_y + 1}]:={movei + 1}", false, true, false);
 
+                    //Move to other possible cells
                     if (ExecuteInternalRec(next_x, next_y, movei + 1, solution, xMove, yMove))
                         return true;
                     else
+                    //In case of failure, backtrack
                     {
                         isBacktrack = true;
                         solution[next_x, next_y] = -1;
                         _level--;
                     }
                 }
+                //Isn't safe - either visited already or is out of bounds of the board
                 else
                 {
                     if (!isThread)
