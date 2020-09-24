@@ -31,6 +31,7 @@ Taken from https://klevas.mif.vu.lt/~cyras/AI/ai-cyras.pdf page 16.
 These tests can be used to check validity of the algorithm results.
 
 Seven tests: 
+
 1)N=5, X=1, Y=1. Trials=70624.
 
 2)N=5, X=5, Y=1. Trials=236.
