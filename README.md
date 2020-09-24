@@ -24,3 +24,25 @@ Program requires 3 variables to start: `length of board`, `starting X and Y posi
 Everything is displayed in a 1-based coordinate system.
 
 Current method of providing variables is a console, however it can be extended to any method, since the class `KnightsTourProblem` can be exported separately.
+
+#Tests
+Taken from https://klevas.mif.vu.lt/~cyras/AI/ai-cyras.pdf page 16.
+
+These tests can be used to check validity of the algorithm results.
+
+Seven tests: 
+1) N=5, X=1, Y=1. Trials=70624.
+
+2)N=5, X=5, Y=1. Trials=236.
+
+3)N=5, X=1, Y=5. Trials= 111981.
+
+4)N=5,X=2, Y=1. No tour. Trials=14635368.
+
+5)N=6,X=1,Y=1. Trials=1985212. 
+
+6)N=7, X=1, Y=1. Trials=57209233.
+
+7)N=4,X=1, Y=1. No tour. Trials=17784.
+
+Print each test to two files as follows:a) PART 1 and PART 3 –to screenand fileout-short.txt;b) all three parts –tofileout-long.txt.
