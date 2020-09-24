@@ -26,8 +26,18 @@ namespace KnightsTourProblem
             _initialX = initialX;
             _initialY = initialY;
             _lengthOfBoard = lengthOfBoard;
+
+            if (shortFileLogger == null)
+                throw new ArgumentNullException(nameof(shortFileLogger));
             _shortFileLogger = shortFileLogger;
+
+            if (longFileLogger == null)
+                throw new ArgumentNullException(nameof(longFileLogger));
+
             _longFileLogger = longFileLogger;
+
+            if (consoleLogger == null)
+                throw new ArgumentNullException(nameof(consoleLogger));
             _consoleLogger = consoleLogger;
         }
 
