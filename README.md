@@ -12,7 +12,7 @@ Length of board is limited to `[1, 10]`, however practical limit depends on heap
 # Logging
 Algorithm is enhanced with advanced logging and tracing in every step.
 
-Currently logs `Part 1` and `Part 3` to console and two files "out-short.txt" and "out-long.txt"
+Currently logs `Part 1` and `Part 3` to console and two files `out-short.txt` and `out-long.txt`
 
 Part 2, detailed Trace, is stores only in "out-long.txt" since the file can get big quickly.
 
@@ -48,6 +48,6 @@ Seven tests:
 
 Print each test to two files as follows:
 
-a) PART 1 and PART 3 –to screenand fileout-short.txt;
+a) PART 1 and PART 3 – to `screen` and file `out-short.txt`;
 
-b) all three parts –tofileout-long.txt.
+b) all three parts – to file `out-long.txt`.
